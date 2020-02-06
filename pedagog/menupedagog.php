@@ -19,8 +19,18 @@
 <body>
 	  <header>
         <?php
-        echo "<h3>".$_SESSION['sesUserName']."</h3>";
+        if(isset($_SESSION['sesUserId']))
+    {
+      echo"<a class='logout' href='../includes/logout.php'>Dil</a>";
+    }
+    //else
+       //header("location: login.php");
+    
+         echo"<h3>".ucwords($_SESSION['sesUserName'])."</h3>";
         ?>
+       
+
+      
       </header>
             <nav>
                 <ul>
