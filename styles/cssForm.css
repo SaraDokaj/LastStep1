@@ -1,0 +1,84 @@
+body {
+	background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(laptop.jpg);
+	background-size: cover;
+	height:100%;
+	overflow: visible;
+
+}
+
+form{
+	padding: 30px;
+	background-color:  linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3)),white;
+	 /*background: linear-gradient(transparent, white);*/
+	width: 30%;
+	background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3));
+	height:400px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: white;
+	border-width: thin;
+
+}
+
+
+
+label{
+	font-family: arial, helvetica, sans-serif;
+	color:#DC143C;
+}
+
+.input{
+
+	padding: 5px;
+	margin-bottom: 10px;
+	background-color: #F4F0E3;
+	border: none;
+	width: 50%;
+	height: 30px;
+
+}
+.center{
+   
+     width: 100vw;
+     height: 100vh;
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.error{
+	color: #FF4500;
+	font-family: "Roboto",arial,sans-serif;
+
+}
+
+.buton_css{
+
+	background-color: #DC143C;
+	color: white;
+	font-family: "Roboto",arial,sans-serif;
+	font-style: bold;
+	border:none;
+	width: 53%;
+	height: 40px;
+	margin:auto;
+
+}
+
+a{
+	text-decoration: none;
+	color:#DC143C;
+	padding: 20px;
+	font-family: verdana, arial, sans-serif;
+
+}
+
+a:hover{
+
+	color:#FF7F50;
+}
+.error{
+	color:#FF4500;
+	font-family: "Roboto",arial,sans-serif;
+}

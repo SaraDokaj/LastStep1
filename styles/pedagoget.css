@@ -1,0 +1,58 @@
+.container form{
+		
+		text-decoration: none;
+		color:white;
+		margin-top: 10px;
+		
+		text-align: center;
+
+	}
+
+	.container .buton{
+		background: transparent;
+		border:none;
+	     background-repeat:no-repeat;
+	     color:white;
+	     font-size:1.1em;
+	     padding:10px;
+
+	}
+	.container .buton:hover{
+		color:#DC143C;
+		border-bottom: transparent;
+		border-top: transparent;
+		border-style: solid;
+	}
+
+	.container{
+		display:flex;
+		flex-direction: row;
+        writing-mode: vertical-lr;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+        align-content: center;
+		
+		border-radius: 5px;
+		border-width: thin;
+		flex-wrap: column;
+		width: 100%;
+	}
+	.container .refuzuar{
+               color:#CCD1D1;
+               font-size:1.1em;
+	           padding:10px;
+               border-bottom: transparent;
+		       border-top: transparent;
+		       border-style: solid;
+		       background: transparent;
+		}
+		.container .kerkuar{
+               color:#DC143C;
+               font-size:1.1em;
+	           padding:10px;
+               border-bottom: transparent;
+		       border-top: transparent;
+		       border-style: solid;
+		       background: transparent;
+		}
