@@ -32,6 +32,15 @@ while($row=mysqli_fetch_assoc($result)) //shfaq pedagoget nga te cilet mund te z
 			{
 				echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='refuzuar' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."' disabled></form><br>";//nese eshte refuzuar nga pedagogu 
 			}
+			else{
+				$sqlPedagoguIzene = "SELECT COUNT(id_pedagog) AS total FROM pranuar WHERE id_pedagog='".$rreshta['id_p']."'";
+				$resultNumri=mysqli_query($conn,$sqlPedagoguIzene);
+				$numri=mysqli_fetch_assoc($resultNumri);
+				if($numri['total']>=5)
+				{
+					echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='refuzuar' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."' disabled></form><br>";//printohet emri jo aktiv nese pedagogu ka tashme 5 studente te pranuar
+				}
+			}
 		}
 	}
 	

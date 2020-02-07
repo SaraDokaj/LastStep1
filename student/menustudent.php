@@ -30,7 +30,7 @@ require'../includes/connection.php';
             <nav>
                 <ul>
                     <li><a href="kreustudent.php">Kreu</a></li>
-                    <li><a href="#">Llogaria</a></li>
+                    <li><a href="llogariastudent.php">Llogaria</a></li>
                     <?php  
                     //if($_SESSION['sesUserMentor']==NULL)//nuk i shfaqet opsioni nese ka zgjedhur tashme 
                        
