@@ -51,9 +51,9 @@ if(isset($_POST['logIn']))
 						if($row=mysqli_fetch_assoc($results))
 						{    
 							$pwdCheck=password_verify($logPass,$row['password']);
-							if($pwdCheck==true)
+							//if($pwdCheck==true)
 							//kontrollon nese paswordi perputhet me ate ne databaze
-								//if($logPass==$row['password'])
+								if($logPass==$row['password'])
 							{
 
 								$_SESSION['sesUserId']=$row['id'];//ruan ne sesion id qofte pedagog apo student

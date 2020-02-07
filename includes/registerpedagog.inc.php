@@ -56,8 +56,9 @@
                             exit();
                         }
                         else{
-                            $hashedPwd=password_hash($password,PASSWORD_DEFAULT);
-                            mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$hashedPwd,$fusha);
+                            //$hashedPwd=password_hash($password,PASSWORD_DEFAULT);
+                           // mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$hashedPwd,$fusha);
+                            mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$password,$fusha);
                             mysqli_stmt_execute($stmt);
                             header("Location: ../login.php");
                             
