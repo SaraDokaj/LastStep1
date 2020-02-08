@@ -35,7 +35,7 @@
             <nav>
                 <ul>
                     <li><a href="#">Kreu</a></li>
-                    <li><a href="#">Llogaria</a></li>
+                    <li><a href="llogariapedagog.php">Llogaria</a></li>
                     <li><a href="postonjoftim.php">Njoftime</a></li>
                     <li><a href="listostudent.php">Listo Studente</a></li>
                     <li><a href="deadline.php">Deadline</a></li>
