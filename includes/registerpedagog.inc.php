@@ -23,8 +23,7 @@
             else if(filter_var($email,FILTER_VALIDATE_EMAIL))
             {
                 $parts=explode('@', $email);
-                if($parts[1]!=$allowed){         //kontrollon formatin e email
-                    //$emailErr="*Emaili duhet te jete i domainit @fti.edu.al.";
+                if($parts[1]!=$allowed){         
                     header("Location: ../pedagog/registerpedagog.php?error=invalidemail");
                     exit();
                 }
@@ -56,9 +55,9 @@
                             exit();
                         }
                         else{
-                            //$hashedPwd=password_hash($password,PASSWORD_DEFAULT);
-                           // mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$hashedPwd,$fusha);
-                            mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$password,$fusha);
+                            $hashedPwd=password_hash($password,PASSWORD_DEFAULT);
+                            mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$hashedPwd,$fusha);
+                            //mysqli_stmt_bind_param($stmt,"ssss",$email,$name,$password,$fusha);
                             mysqli_stmt_execute($stmt);
                             header("Location: ../login.php");
                             

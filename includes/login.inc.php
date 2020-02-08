@@ -51,29 +51,25 @@ if(isset($_POST['logIn']))
 						if($row=mysqli_fetch_assoc($results))
 						{    
 							$pwdCheck=password_verify($logPass,$row['password']);
-							//if($pwdCheck==true)
+							if($pwdCheck==true)
 							//kontrollon nese paswordi perputhet me ate ne databaze
-								if($logPass==$row['password'])
+							//if($logPass==$row['password'])
 							{
 
 								$_SESSION['sesUserId']=$row['id'];//ruan ne sesion id qofte pedagog apo student
 								if($student==true){     
 
 									$_SESSION['sesUserName']=$row['emri'];
-									$_SESSION['sesUserMentor']=$row['mentor_id'];//ruan id e mentorit per te content te ndryshem me vone 
-									//*if($row['mentor_id']==NULL){
+									$_SESSION['sesUserMentor']=$row['mentor_id'];//ruan id e mentorit per te 
 									header("Location: ../student/kreustudent.php");
 									exit();}
-									/*else{
-										header("Location: ../student/menustudentzgjedhur.php");
-									exit();
-									}*/
+									
 								
 								else if($pedagog==true)
 								{
 
 									$_SESSION['sesUserName']=$row['p_emri'];//ruan emrin e pedagogut ne sesion per tu printuar me pas
-									header("Location: ../pedagog/menupedagog.php");
+									header("Location: ../pedagog/postonjoftim.php");
 									exit();
 								}
 
