@@ -45,3 +45,40 @@
 			color:#FF4500;
 
 		}  
+
+		.inputfrm{
+			background:transparent;
+			border-style: solid;
+			border-color: #FF4500;
+			border-width: 1px;
+            color: #FF4500;
+            margin-right: 10px;
+            margin-top: 8px;
+		}
+		.containerLlogari{
+          background-color:  linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),white;
+		  background-image: linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7));
+			position:absolute;
+			width:45%;
+			height:30%;
+			top:40%;
+			left:32%;
+			padding:30px;
+			border-radius: 10px;
+			text-align: center;
+			color:#34495E;
+
+		}
+    .mesazhEkstra{
+    	   background-color:  linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),white;
+		  background-image: linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7));
+		  position:relative;
+			width:45%;
+			height:10%;
+			top:40%;
+			left:32%;
+			padding:30px;
+			border-radius: 10px;
+			text-align: center;
+
+    }
