@@ -24,21 +24,24 @@
   <div class="containerLlogari">
   	  <img src="user.png">
   	   <div>
-  	   	<label>Tema:</label> <?php
-  	   	$sql="SELECT tema.titulli,student.id,tema.deadline,pedagog.emri FROM tema INNER JOIN student ON id_tema=id_t WHERE id='".$_SESSION['sesUserId']."'";
+  	   	<label>Tema:</label> 
+        <?php
+        $studenti=$_SESSION['sesUserId'];
+  	   	$sql="SELECT tema.titulli,student.id,tema.deadline FROM (tema INNER JOIN student ON id_t=id_tema )WHERE student.id='$studenti'";
+
   	   	if($res=mysqli_query($conn,$sql)){
-  	   	if($onerow=mysqli_fetch_assoc($res))
-  	   	echo ucfirst($onerow['titulli'])."<div style='color:#FF4500;'>   " .$onerow['deadline']."</div>";
+  	   	$onerow=mysqli_fetch_assoc($res);
+  	   	echo $onerow['titulli']."<div style='color:#FF4500;'>   ".$onerow['deadline']."</div>";
   	   
   	     }
   	     else echo "Nuk keni dorezuar akoma temen.";
   	   	?>
   	   	<br><label>Pedagogu Mentor:</label>
   	   	<?php
-  	   	$sql1="SELECT pedagog.p_emri,pranuar.id_studentp, FROM pranuar INNER JOIN pedagog ON id_pedagog=pedagog.id WHERE id_studentp='".$_SESSION['sesUserId']."'";
+  	   	$sql1="SELECT pedagog.p_emri,pranuar.id_studentp,pranuar.id_pedagog,pedagog.id FROM (pranuar INNER JOIN pedagog ON id_pedagog=pedagog.id) WHERE id_studentp='$studenti'";
   	   	if($res1=mysqli_query($conn,$sql1)){
-  	   	if($onerow1=mysqli_fetch_assoc($res1))
-  	   	echo ucwords($onerow1['p_emri']);
+  	   	$onerow1=mysqli_fetch_assoc($res1);
+  	   	echo $onerow1['p_emri'];
   	   
   	       }
   	       else echo "Nuk keni perzgjedhur akoma pedagogun mentor.";
