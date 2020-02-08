@@ -67,8 +67,8 @@ require '../includes/connection.php';
     	else{
     		mysqli_stmt_bind_param($stmt,"sis",$njoftim,$_SESSION['sesUserId'],$datenjoftim);
     		mysqli_stmt_execute($stmt);
-              echo"<p style='color:white;'>Shtimi u be</p>";
-    		header("Location: menupedagog.php");
+              
+    		header("Location: postonjoftim.php");
 
     	}
     }
