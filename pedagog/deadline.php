@@ -10,7 +10,7 @@
 </head>
 <body>
 	<?php
-	$sql="SELECT pranuar.id_studentp, pranuar.id_pedagog,student.id,student.emri,student.grupi,tema.titulli, student.id_tema,tema.deadline,tema.id_t From((pranuar INNER JOIN student ON pranuar.id_studentp = student.id) INNER JOIN tema ON student.id_tema = tema.id_t) WHERE pranuar.id_pedagog = '".$_SESSION['sesUserId']."'";
+	$sql="SELECT pranuar.id_studentp, pranuar.id_pedagog,student.id,student.emri,student.grupi,tema.titulli, student.id_tema,tema.deadline,tema.id_t,student.dorezuar From((pranuar INNER JOIN student ON pranuar.id_studentp = student.id) INNER JOIN tema ON student.id_tema = tema.id_t) WHERE pranuar.id_pedagog = '".$_SESSION['sesUserId']."'";
 if($result=mysqli_query($conn,$sql))
 {   
   if(mysqli_num_rows($result)>0){
@@ -24,14 +24,21 @@ if($result=mysqli_query($conn,$sql))
         }
         elseif($row['deadline']!=NULL)
         {
-        	 $output.="<div class='innercontainer'>".ucwords($row['emri'])."  ".ucwords($row['grupi'])."  ".ucfirst($row['titulli'])."  ".$row['deadline']."</div>";
+            if($row['dorezuar']==0)
+            {
+        	 $output.="<div class='innercontainer'>".ucwords($row['emri'])."  ".ucwords($row['grupi'])."  ".ucfirst($row['titulli'])."  ".$row['deadline']."<form action='deadline.php' method='post'><input type='hidden' name='studentDorezo' value='".$row['id']."'><input type='submit' name='dorezuar' value='Dorezuar' class='frmbtn'></form></div>";
            echo $output;
+         }
+         else {
+               $output.="<div class='innercontainer'>".ucwords($row['emri'])."  ".ucwords($row['grupi'])."  ".ucfirst($row['titulli'])."  ".$row['deadline']."  <label style='color:#FF4500;'>Dorezuar</label></div>";
+           echo $output;
+         }
         }
        $output.="</div>";
 	}
 }
  else {
-    echo"<div class='containeralert'>Nuk ka tema te dorezuara deri tani.</div>";//nese per pedagogun e loguar nuk ka studente te pranuar qe kane dorezuar temen
+    echo"<div class='containeralert'>Nuk ka tema te percaktuara deri tani.</div>";//nese per pedagogun e loguar nuk ka studente te pranuar qe kane dorezuar temen
   }
 }
 
@@ -48,6 +55,19 @@ if(isset($_POST['setDate']))
                  else{
                   header("location: deadline.php?insert=fail");
                  }  
+   }
+
+   if(isset($_POST['dorezuar']))
+   {
+       $idDorezuar=$_POST['studentDorezo'];
+       $sql="UPDATE student SET dorezuar=1 WHERE id='$idDorezuar'";
+       if(mysqli_query($conn,$sql))
+                 {
+                  header("location: deadline.php?dorezo=success");
+                 }
+                 else{
+                  header("location: deadline.php?dorezo=fail");
+                 } 
    }
 
 	?>

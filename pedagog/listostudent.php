@@ -37,7 +37,7 @@ require 'menupedagog.php';
 require '../includes/connection.php';
 $output="";
 
-$sql="SELECT kerkesa.id_s,kerkesa.id_p,kerkesa.refuzuar,student.emri,student.grupi FROM(kerkesa INNER JOIN student ON id_s=id)WHERE id_p=? AND NOT refuzuar=1";
+$sql="SELECT kerkesa.id_s,kerkesa.id_p,kerkesa.refuzuar,student.emri,student.grupi,student.dorezuar FROM(kerkesa INNER JOIN student ON id_s=id)WHERE id_p=? AND NOT refuzuar=1 AND NOT dorezuar=1";//merr gjithe kerkesat e parefuzuara qe i jane bere pedagogut te loguar momentalisht
 $stmt=mysqli_stmt_init($conn);
 //mysqli_stmt_prepare($stmt,$sql);
 if(!mysqli_stmt_prepare($stmt,$sql))
@@ -54,14 +54,7 @@ else{
   $output="<div class='container'><table><thead><tr><th>Emri</th><th>Grupi</th><th>Pergjigja</th><tr><tbody>";
   while($row=mysqli_fetch_assoc($result))
   {   
-                         	//$sql1="SELECT emri,grupi FROM student WHERE id=?";
-                         	//$stmt1=mysqli_stmt_init($conn);
-                           // mysqli_stmt_prepare($stmt1,$sql1);
-                            //mysqli_stmt_bind_param($stmt1,"i",$row['id_s']);
-						    //mysqli_stmt_execute($stmt1);
-						    //$result1=mysqli_stmt_get_result($stmt1);
-						   // $row1=mysqli_fetch_assoc($result1);
-     $sqlPranuar="SELECT * FROM pranuar WHERE id_studentp='".$row['id_s']."' AND id_pedagog='".$_SESSION['sesUserId']."'";
+     $sqlPranuar="SELECT * FROM pranuar WHERE id_studentp='".$row['id_s']."' AND id_pedagog='".$_SESSION['sesUserId']."'";//shoh nese kerkesa e marre eshte pranuar nga ky pedagog
      $resultPranuar=mysqli_query($conn,$sqlPranuar);
      $count=mysqli_num_rows($resultPranuar);
      if($count>0)
@@ -71,7 +64,7 @@ else{
         $output.="<td>Pranuar</td></tr>";
     }
     else{
-      $sqlPranuarTjeter="SELECT* FROM pranuar WHERE id_studentp='".$row['id_s']."'AND NOT id_pedagog='".$_SESSION['sesUserId']."'";
+      $sqlPranuarTjeter="SELECT* FROM pranuar WHERE id_studentp='".$row['id_s']."'AND NOT id_pedagog='".$_SESSION['sesUserId']."'";//shoh nese kerkesa eshte pranuar nga nje pedagog tjeter dhe nese jo e printoj ate me dy mundesi konfirmimi
       $resultPranuarTjeter=mysqli_query($conn,$sqlPranuarTjeter);
       $count=mysqli_num_rows($resultPranuarTjeter);
       if($count<1)
@@ -122,8 +115,7 @@ echo $output;
     }
 
     mysqli_stmt_close($stmt);
-   // mysqli_stmt_close($stmt1);
-  
+   
     mysqli_close($conn);
 
 ?>
