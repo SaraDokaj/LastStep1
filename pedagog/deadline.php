@@ -17,7 +17,7 @@
   if(isset($_POST['kerko']))
   {
 
-    $search=$_POST['temaKerkuar'];
+    $search=mysqli_real_escape_string($conn,$_POST['temaKerkuar']);
 	$sql="SELECT pranuar.id_studentp, pranuar.id_pedagog,student.id,student.emri,student.grupi,tema.titulli, student.id_tema,tema.deadline,tema.id_t,student.dorezuar From((pranuar INNER JOIN student ON pranuar.id_studentp = student.id) INNER JOIN tema ON student.id_tema = tema.id_t) WHERE tema.titulli LIKE '%$search%' AND pranuar.id_pedagog = '".$_SESSION['sesUserId']."'";
 if($result=mysqli_query($conn,$sql))
 {   

@@ -21,7 +21,22 @@ while($row=mysqli_fetch_assoc($result)) //shfaq pedagoget nga te cilet mund te z
 {     $sqlKerkesa= "SELECT * FROM kerkesa WHERE id_s='".$_SESSION["sesUserId"]."' AND id_p='".$row["id"]."'";
        $resultKerkesa=mysqli_query($conn,$sqlKerkesa);
        if(mysqli_num_rows($resultKerkesa)<1){
-	echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='buton' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."'></form><br>";} //nese nuk e ka kerkuar pedagogun
+
+
+       	$sqlPedagoguIzene = "SELECT * FROM pranuar WHERE id_pedagog='".$row['id']."'";
+				if($resultNumri=mysqli_query($conn,$sqlPedagoguIzene))
+				   
+			     $numri=mysqli_num_rows($resultNumri);
+		     if($numri>4)
+				{    
+					
+					echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='refuzuar' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."' disabled></form><br>";//printohet emri jo aktiv nese pedagogu ka tashme 5 studente te pranuar
+				}
+
+else{
+	echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='buton' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."'></form><br>";//nese nuk e ka kerkuar pedagogun
+}
+	} 
 	else {
 		while($rreshta=mysqli_fetch_assoc($resultKerkesa))
 		{
@@ -32,21 +47,15 @@ while($row=mysqli_fetch_assoc($result)) //shfaq pedagoget nga te cilet mund te z
 			{
 				echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='refuzuar' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."' disabled></form><br>";//nese eshte refuzuar nga pedagogu 
 			}
-			else{
-				$sqlPedagoguIzene = "SELECT COUNT(id_pedagog) AS total FROM pranuar WHERE id_pedagog='".$rreshta['id_p']."'";
-				$resultNumri=mysqli_query($conn,$sqlPedagoguIzene);
-				$numri=mysqli_fetch_assoc($resultNumri);
-				if($numri['total']>=5)
-				{
-					echo "<form method='post' action='listopedagog.php'><input type='hidden' name='mentor_id' value='".$row['id']."'><input class='refuzuar' type='submit' name='zgjidh' value='".ucwords($row['p_emri'])."  ".ucwords($row['fusha'])."' disabled></form><br>";//printohet emri jo aktiv nese pedagogu ka tashme 5 studente te pranuar
-				}
-			}
+		
 		}
 	}
-	
-}
 
+	
+	}
+	
 echo"</div>";
+
 
 if(isset($_POST['zgjidh']))// i ben update id se mentorit
 {
@@ -55,26 +64,27 @@ if(isset($_POST['zgjidh']))// i ben update id se mentorit
 	
 	//$sql1="UPDATE student SET mentor_id='$mentor' WHERE id=?";
 	$user=$_SESSION['sesUserId'];
-     $sql2="SELECT id_s FROM pranuar WHERE id_s=$user";
-     $res=mysqli_query($conn,$sql2);
-     $count=mysqli_num_rows($res);
-             if($count==0){
-
-	$sql1="INSERT INTO kerkesa (id_s,id_p) VALUES(?,?)";
-	$stmt1=mysqli_stmt_init($conn);
-	if(!mysqli_stmt_prepare($stmt1,$sql1))
+	$sql2="SELECT id_s FROM pranuar WHERE id_s=$user";
+	$res=mysqli_query($conn,$sql2);
+	$count=mysqli_num_rows($res);
+	if($count==0)
 	{
-		header("Location: listopedagog.php?error=sqlerror");
+
+		$sql1="INSERT INTO kerkesa (id_s,id_p) VALUES(?,?)";
+		$stmt1=mysqli_stmt_init($conn);
+		if(!mysqli_stmt_prepare($stmt1,$sql1))
+		{
+			header("Location: listopedagog.php?error=sqlerror");
 						//exit();
-	}
-	else{
+		}
+		else{
 		mysqli_stmt_bind_param($stmt1,"ii",$_SESSION['sesUserId'],$mentor);//perdor variablin e id te ruajtur ne sesion dhe id e marre permes inputit hidden 
 		mysqli_stmt_execute($stmt1);
 		//$_SESSION['sesUserMentor']=$mentor;
 		header("location: listopedagog.php");
 		exit();
-	}
-}
+	       }
+    }
 
 
 }

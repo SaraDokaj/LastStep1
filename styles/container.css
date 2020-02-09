@@ -4,7 +4,7 @@
 			background-image: linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7));
 			position:absolute;
 			width:45%;
-			top:40%;
+			top:45%;
 			left:32%;
 			padding:30px;
 			border-radius: 10px;
@@ -17,6 +17,7 @@
 			border-color:#DC143C;
 			border-radius: 10px;
 			padding:15px ;
+			margin-top: 15px;
 		}
 
 		.frmbtn{
@@ -37,7 +38,7 @@
 			background-image: linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7));
 			position:absolute;
 			width:45%;
-			top:40%;
+			top:45%;
 			left:32%;
 			padding:30px;
 			border-radius: 10px;
@@ -81,4 +82,41 @@
 			border-radius: 10px;
 			text-align: center;
 
+    }
+
+    .searchBar{
+     position:relative;
+			width:30%;
+			height:5px;
+			left:32%;
+			padding:30px;
+			border:none;
+			text-align: center;
+			border-radius: 10px;
+
+    }
+    .inputSearch{
+    	background: transparent;
+    	color:white;
+    	border-style: solid;
+			border-color: white;
+			border-width: 1px;
+    	border-top: transparent;
+    	border-left: transparent;
+    	border-right: transparent;
+    }
+    .inputSearch:focus{
+    	outline:none;
+    }
+    .searchBtn{
+    	
+    	background:transparent;
+			border-style: solid;
+			border-color: white;
+			border-width: 1px;
+            color: white;
+            padding: 5px;
+            border-radius:10px;
+         
+            
     }
