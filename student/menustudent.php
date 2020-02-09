@@ -39,8 +39,8 @@ require'../includes/connection.php';
                        mysqli_stmt_prepare($stmt,$sql);
                        mysqli_stmt_bind_param($stmt,"i",$_SESSION['sesUserId']);
                        mysqli_stmt_execute($stmt);
-                       $result=mysqli_stmt_get_result($stmt);
-                       if(mysqli_num_rows($result)>0)
+                       $result1=mysqli_stmt_get_result($stmt);
+                       if(mysqli_num_rows($result1)>0)
                        {
                            
                             echo""; 
@@ -51,18 +51,27 @@ require'../includes/connection.php';
                     ?>
                    <?php
                       $sql2="SELECT * FROM student WHERE id='".$_SESSION['sesUserId']."'";
-                    $result=mysqli_query($conn,$sql2);
-                    if($result)
-                   {
-                      $row=mysqli_fetch_assoc($result);
+                    $result2=mysqli_query($conn,$sql2);
+                    if($result2)
+                   {  $row=mysqli_fetch_assoc($result2);
+                       $sql3="SELECT * FROM pranuar WHERE id_studentp='".$_SESSION['sesUserId']."'";
+                       if($res=mysqli_query($conn,$sql3)){
+                         if(mysqli_num_rows($res)>0){
+
+
                       if($row['id_tema']==NULL)
                       {
                    echo "<li><a href='dergoteme.php'>Dorezo Teme</a></li>";
                       }
 
+                      }
+                      echo "";
+                    }
+
+
                     }
                     ?>
-                   <li><a href="#">Keshille</a></li>
+                  
 
                     
                 </ul>
