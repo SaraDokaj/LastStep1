@@ -27,7 +27,13 @@
                     header("Location: ../pedagog/registerpedagog.php?error=invalidemail");
                     exit();
                 }
-            
+            else{
+                 $firstPart=explode('.',$parts[0]);
+                if(strlen($firstPart[0])!=1)
+                {
+                     header("Location: ../pedagog/registerpedagog.php?error=notteacher");
+                     exit();
+                }
             else{
                 $sql="SELECT p_email FROM pedagog WHERE p_email=?";
                 $stmt=mysqli_stmt_init($conn);
@@ -65,6 +71,7 @@
                     }
                 }
             }
+           }
         }
             mysqli_stmt_close($stmt);
             mysqli_close($conn);

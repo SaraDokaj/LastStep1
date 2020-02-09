@@ -19,7 +19,9 @@ require'../header.php';
             if($_GET['error']=="invaliddomain")
                 echo"<p class='error' >Duhet të përdorni një email zyrtar FTI./p>";
             if($_GET['error']=="alreadyusedemail")
-                echo"<p class='error' >Ky email është regjistruar njëherë.</p>";;
+                echo"<p class='error' >Ky email është regjistruar njëherë.</p>";
+                if($_GET['error']=="notteacher")
+                echo"<p class='error' >Emaili juaj nuk eshte i nje pedagogu.</p>";
 
         }
         ?>
